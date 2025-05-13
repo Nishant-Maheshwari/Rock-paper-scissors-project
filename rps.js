@@ -40,7 +40,7 @@ function PlayerMove(MovePicked){
 html.innerHTML = `<p>computer move: ${computerMovE}-Your move: ${MovePicked}
  ${result}
  wins:${score.wins} loss:${score.loss} tie:${score.tie}</P>`
-setTimeout(()=>{html.innerHTML = ""},2000)
+
   
 } 
 function scoreTable(result){
@@ -57,8 +57,23 @@ function scoreTable(result){
     localStrg()
     console.log(score);
     
+} 
+let isautoPlaying = false;
+let intervalId;
+function autoPlay(){
+  if(!isautoPlaying){
+    isautoPlaying = true
+ intervalId = setInterval(() => {
+    let moves = ['rock','paper','scissors'];
+    let randomMove = moves[Math.floor(Math.random()*3)]
+    PlayerMove(randomMove)
+  },1000);}
 }
 
+function stopAutoPlay(){
+  isautoPlaying = false;
+  clearInterval(intervalId)
+}
 
 
 function localStrg(){
