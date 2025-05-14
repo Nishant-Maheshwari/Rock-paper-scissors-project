@@ -35,14 +35,17 @@ function PlayerMove(MovePicked){
     result = "You Lose"
   }
   scoreTable(result)
-  
-  let html = document.querySelector(`.js-result`);
+   let html = document.querySelector(`.js-result`);
 html.innerHTML = `<p>computer move: ${computerMovE}-Your move: ${MovePicked}
  ${result}
  wins:${score.wins} loss:${score.loss} tie:${score.tie}</P>`
+ 
 
   
 } 
+
+
+
 function scoreTable(result){
   if(
     result === "You Win"){
@@ -61,19 +64,24 @@ function scoreTable(result){
 let isautoPlaying = false;
 let intervalId;
 function autoPlay(){
+  let autoplay1 = document.querySelector(`.js-autoplay`)
   if(!isautoPlaying){
     isautoPlaying = true
  intervalId = setInterval(() => {
     let moves = ['rock','paper','scissors'];
     let randomMove = moves[Math.floor(Math.random()*3)]
     PlayerMove(randomMove)
-  },1000);}
+  },1000);
+autoplay1.textContent = "stop Autoplay"} 
+else if(isautoPlaying){
+ isautoPlaying = false;
+  clearInterval(intervalId)
+  autoplay1.textContent = "Autoplay"
 }
 
-function stopAutoPlay(){
-  isautoPlaying = false;
-  clearInterval(intervalId)
 }
+
+
 
 
 function localStrg(){
