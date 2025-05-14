@@ -35,14 +35,17 @@ function PlayerMove(MovePicked){
     result = "You Lose"
   }
   scoreTable(result)
-   let html = document.querySelector(`.js-result`);
-html.innerHTML = `<p>computer move: ${computerMovE}-Your move: ${MovePicked}
- ${result}
- wins:${score.wins} loss:${score.loss} tie:${score.tie}</P>`
+   let html = document.querySelector(`.js-moves`);
+html.innerHTML = `<div>computer move: ${computerMovE}</div> 
+                   <div> Your move: ${MovePicked} </div>
+                    <div>${result}</div>`
+ scoreUi()
  
-
-  
-} 
+ } 
+ function scoreUi(){
+  let html = document.querySelector(`.js-score`)
+  html.innerHTML = `<div> wins:${score.wins} loss:${score.loss} tie:${score.tie} </div>`
+ }
 
 
 
@@ -61,6 +64,13 @@ function scoreTable(result){
     console.log(score);
     
 } 
+function reset(){
+  score.wins = 0
+  score.loss = 0
+  score.tie  = 0
+  scoreUi()
+}
+
 let isautoPlaying = false;
 let intervalId;
 function autoPlay(){
