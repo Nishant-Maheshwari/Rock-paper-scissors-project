@@ -28,7 +28,7 @@ function PlayerMove(MovePicked){
   }else if(
     (MovePicked === "rock" && computerMovE === 'scissors')||
     (MovePicked === "paper" && computerMovE === 'rock')||
-    (MovePicked === "rock" && computerMovE === 'scissors')
+    (MovePicked === "scissors" && computerMovE === 'paper')
   ){
  result = "You Win"
   }else{
@@ -40,6 +40,8 @@ html.innerHTML = `<div>computer move: ${computerMovE}</div>
                    <div> Your move: ${MovePicked} </div>
                     <div>${result}</div>`
  scoreUi()
+ UpdateMiniSeries(result)
+ checkBestOfThree()
  
  } 
  function scoreUi(){
@@ -68,6 +70,7 @@ function reset(){
   score.wins = 0
   score.loss = 0
   score.tie  = 0
+  localStrg()
   scoreUi()
 }
 
@@ -90,7 +93,35 @@ else if(isautoPlaying){
 }
 
 }
-
+let playerCount = 0;
+let computerCount = 0;
+function UpdateMiniSeries(result){
+if(
+  result === 'You Win'){
+  playerCount++
+}else if(
+  result === 'You Lose'
+){
+  computerCount++
+}
+}
+function checkBestOfThree(){
+  let mini = document.querySelector('.js-mini')
+if(
+  playerCount === 2
+){
+mini.innerHTML = `You won best of Three`
+playerCount = 0;
+computerCount = 0;
+} 
+else if(
+  computerCount === 2
+){
+  mini.innerHTML = `Computer Won best of three`
+  playerCount = 0;
+  computerCount = 0;
+}
+}
 
 
 
