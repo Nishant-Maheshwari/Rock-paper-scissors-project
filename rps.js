@@ -92,37 +92,42 @@ else if(isautoPlaying){
   autoplay1.textContent = "Autoplay"
 }
 
+} 
+const bestOfthree = {
+  playerCount : 0,
+  computerCount : 0,
+  limit : 2
 }
-let playerCount = 0;
-let computerCount = 0;
+
 function UpdateMiniSeries(result){
 if(
   result === 'You Win'){
-  playerCount++
+  bestOfthree.playerCount++
 }else if(
   result === 'You Lose'
 ){
-  computerCount++
+ bestOfthree.computerCount++
 }
 }
 function checkBestOfThree(){
   let mini = document.querySelector('.js-mini')
 if(
-  playerCount === 2
+  bestOfthree.playerCount === bestOfthree.limit
 ){
 mini.innerHTML = `You won best of Three`
-playerCount = 0;
-computerCount = 0;
+resetBestOfThree()
 } 
 else if(
-  computerCount === 2
+  bestOfthree.computerCount === bestOfthree.limit
 ){
   mini.innerHTML = `Computer Won best of three`
-  playerCount = 0;
-  computerCount = 0;
+  resetBestOfThree()
 }
 }
-
+function resetBestOfThree(){
+bestOfthree.playerCount = 0;
+bestOfthree.computerCount = 0;
+}
 
 
 function localStrg(){
